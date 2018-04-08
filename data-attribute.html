@@ -1,0 +1,45 @@
+<!-- The data-* attributes is used to store custom data private to the page or application. -->
+
+<!-- Say you have an article and you want to store some extra information that doesn’t have any visual representation -->
+<!-- Issues
+Do not store content that should be visible and accessible in data attributes, 
+because assistive technology may not access them. In addition, 
+search crawlers may not index data attributes' values. 
+
+The main issues to consider are Internet Explorer support and performance. 
+Internet Explorer 11+ provides support for the standard, but all earlier versions do not support dataset.
+To support IE 10 and under you need to access data attributes with getAttribute()  instead. Also, the performance of reading data-attributes compared to storing this data in a JS data warehouse is poor.
+
+That said, though, for custom element-associated metadata, they are a great solution.
+
+In Firefox 49.0.2 (and perhaps earlier/later versions), 
+the data attributes that exceed 1022 characters will not be read by Javascript (EcmaScript 4). -->
+
+<!-- url : https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes -->
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <article id="electriccars" data-columns="3" data-index-number="12314" data-parent="cars">
+        ...
+    </article>
+
+</body>
+<script>
+var article = document.getElementById('electriccars');
+ 
+ article.dataset.columns // "3"
+ article.dataset.indexNumber // "12314"
+ article.dataset.parent // "cars"
+ console.log(article.dataset.columns);
+ console.log(article.dataset.indexNumber);
+
+ article.dataset.columns = "5";
+ console.log(article.dataset.columns); // 5
+ 
+</script>
+
+</html>
