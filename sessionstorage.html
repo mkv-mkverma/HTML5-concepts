@@ -1,0 +1,71 @@
+<!-- 
+HTML web storage; better than cookies.
+
+What is HTML Web Storage?
+With web storage, web applications can store data locally within the user's browser.
+Before HTML5, application data had to be stored in cookies, included in every server request. 
+Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance.
+Unlike cookies, the storage limit is far larger (at least 5MB) and information is never transferred to the server.
+Web storage is per origin (per domain and protocol). All pages, from one origin, can store and access the same data.
+
+HTML web storage provides two objects for storing data on the client:
+
+window.localStorage - stores data with no expiration date
+window.sessionStorage - stores data for one session (data is lost when the browser tab is closed)
+
+localStorage.setItem('myCat', 'Tom');
+The syntax for reading the localStorage item is as follows:
+
+var cat = localStorage.getItem("myCat");
+The syntax for removing the localStorage item is as follows:
+
+localStorage.removeItem("myCat");
+
+localStorage.setItem("key", "value");
+
+The sessionStorage object is equal to the localStorage object, except that it stores the data for only one session.
+The data is deleted when the user closes the specific browser tab.
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<body onload="onPageLoad()">
+    <h3>Session Storage</h3>
+    <input type="text" id="inputValue">
+    <button onclick="setItem()">Set Item</button>
+    <button onclick="removeItem()">Remove Item</button>
+    <div id="result"></div>
+
+    <script>
+        function onPageLoad() {
+            // heck browser support for sessionStorage and sessionStorage:
+            if (typeof (Storage) !== "undefined") {
+                // Retrieve
+                // document.getElementById("result").innerHTML = sessionStorage.lastname;
+                // document.getElementById("result").innerHTML = sessionStorage.getItem("lastname");
+                document.getElementById("result").innerHTML = sessionStorage.getItem("lastname");
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+            }
+        }
+
+        function setItem() {
+            var output = document.getElementById("inputValue").value;
+            // Store
+            // sessionStorage.lastname = "Smith";            
+            // sessionStorage.setItem("lastname", "Smith");
+            sessionStorage.setItem("lastname", output);
+            onPageLoad();
+        }
+
+        function removeItem() {
+            // remove
+            sessionStorage.removeItem("lastname");
+            onPageLoad();
+        }
+    </script>
+
+</body>
+
+</html>
